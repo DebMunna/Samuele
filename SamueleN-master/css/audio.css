@@ -1,0 +1,472 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+body {
+  background-color: rgba(34, 34, 34, 0.1);
+  
+  font-weight: 300;
+  line-height: 1.5em;
+}
+
+
+
+.table {
+  display: table;
+  
+}
+
+.table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#playbar {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+#player {
+    margin: 0 auto;
+    position: relative;
+    width: 235px;
+    height: 235px;
+}
+#player #main { 
+    width: 343px;
+    height: 225px;
+    overflow: hidden;
+    border-radius: 0px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 2;
+    position: relative;
+    border-bottom: 4px solid white;
+    margin-left: -55px;
+}
+#player.show #main {
+  -webkit-transform: translateX(-200px);
+          transform: translateX(-200px);
+}
+#player.show ol {
+  -webkit-transform: translateX(200px);
+          transform: translateX(200px);
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.3);
+  -webkit-transition: 0s box-shadow 0.05s, -webkit-transform 0.4s ease-in-out;
+  transition: 0s box-shadow 0.05s, -webkit-transform 0.4s ease-in-out;
+  transition: transform 0.4s ease-in-out, 0s box-shadow 0.05s;
+  transition: transform 0.4s ease-in-out, 0s box-shadow 0.05s, -webkit-transform 0.4s ease-in-out;
+}
+#player .playback_controls {
+    color: rgb(250, 250, 250);
+    font-size: 18px;
+   
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: 1;
+}
+#player .playback_controls .buttons {
+    text-align: center;
+    padding-right: 10px;
+}
+#player .playback_controls .buttons i {
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    color: #d08e26 !important;
+}
+.repeat {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+    margin-top: -20px;
+    margin-left: 260px;
+}
+.shuffle {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+    margin-top: -33px;
+    margin-left: 200px;
+}
+
+#player .playback_controls .buttons i#playpause.loading {
+  opacity: 0.4;
+  position: relative;
+  
+}
+#player .playback_controls .buttons i#playpause.loading:after {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 50px;
+  height: 50px;
+  top: 50%;
+  margin-top: -25px;
+  margin-left: -31px;
+  left: 50%;
+  border: 3px solid #f5af14;
+  border-radius: 100%;
+
+ 
+}
+#player .playback_controls .menu {
+    float: right;
+    cursor: pointer;
+    opacity: 0.2;
+    -webkit-transition: opacity 0.2s;
+    transition: opacity 0.2s;
+    display: none;
+}
+#player .playback_controls .menu:hover {
+  opacity: 0.6;
+}
+
+#main:hover .playback_controls, .show #main .playback_controls {
+  opacity: 1;
+ 
+}
+
+h2 {
+  font-weight: 300;
+  font-size: 16px;
+  text-align: center;
+  margin: 0 0 10px 0;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 12px;
+  text-align: center;
+  margin: 0;
+}
+
+#playpause {
+    width: 60px;
+    height: 60px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid #d08e26;
+    color: #d08e26 !important;
+    padding: 15px 0 0 2px;
+    filter: drop-shadow(0px 2px 5px #000);
+}
+
+
+.fa-forward {
+    font-size: 1.3em;
+    padding: 10px 0;
+    color: #f5af14;
+    cursor: pointer;
+    -webkit-filter: drop-shadow(0px 2px 5px #000);
+    filter: drop-shadow(0px 2px 5px #000);
+}
+
+.fa-backward {
+    font-size: 1.3em;
+    padding: 10px 0;
+    color: #f5af14;
+    cursor: pointer;
+    -webkit-filter: drop-shadow(0px 2px 5px #000);
+    filter: drop-shadow(0px 2px 5px #000);
+}
+
+.fa-backward:hover {
+    font-size: 1.3em;
+    padding: 10px 0;
+    color: #7f7f7f;
+    cursor: pointer;
+    -webkit-filter: drop-shadow(0px 2px 5px #000);
+    filter: drop-shadow(0px 2px 5px #000);
+}
+
+   .time-holder {
+    padding: 10px;
+    width: 235px;
+    margin-left: -10px;
+}
+
+.time-holder .slider {
+    width: 340px;
+    height: 50px;
+    position: relative;
+    margin-left: 2px;
+}
+.time-holder .slider::before {
+    position: absolute;
+    top: 50%;
+    margin-top: -2px;
+    left: 0;
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: #eee;
+}
+.time-holder .slider .fill {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  -webkit-transform-origin: 0% 0%;
+          transform-origin: 0% 0%;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  margin-top: -2px;
+  left: 0;
+  content: '';
+  display: block;
+  height: 5px;
+  background-color: #D08E26;
+ 
+}
+
+a {
+  color: rgba(0, 0, 0, 0.55);
+  text-decoration: none;
+}
+.tit {
+    margin-top: -23px;
+    margin-bottom: 24px;
+}
+.time {
+  font-size: 12px;
+  font-weight: bold;
+  opacity: 0.3;
+  float: right;
+}
+
+ol#playlist {
+    list-style-type: none;
+    margin-left: 0;
+    width: 300px;
+    padding-left: 0;
+    height: auto;
+    background-color: transparent;
+    margin: 0;
+    font-size: 12px;
+    padding-top: 25px;
+    margin-left: 20px;
+}
+
+#title {
+    
+    font-weight: normal;
+    font-size: 18px;
+    margin-bottom: 5px;
+    line-height: 1.6;
+}
+#artist {
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    margin: 0;
+}
+
+
+#playbacktime {
+    float: right;
+    margin-top: -65px;
+    color: #fff;
+    font-size: 12px;
+}
+ol#playlist a {
+    color: #e0ab2d;
+    font-size: 16px;
+    margin-top: 10px;
+}
+ol#playlist > li {
+    margin-bottom: 26px;
+    border-bottom: 1px solid #b9b9b9;
+}
+ol#playlist > li:after {
+    position: absolute;
+    width: 220px;
+    content: '';
+    display: block;
+    bottom: 0;
+    border-bottom: 2px solid rgba(245, 244, 244, 0.1);
+    margin-left: -8px;
+}
+ol#playlist > li:last-child:after {
+  border-color: transparent;
+}
+ol#playlist > li:hover {
+  background-color: transparent;
+}
+ol#playlist > li.playing {
+    background-color: transparent;
+}
+ol#playlist > li.playing:after {
+  border-color: transparent;
+}
+ol#playlist > li.playing:hover {
+  background-color: transparent;
+}
+
+ol#playlist > li::before {
+    content: counter(customlistcounter) " ";
+    float: left;
+    text-align: right;
+    width: 1em;
+    margin-right: 1em;
+    font-size: 12px;
+    font-weight: bold;
+    opacity: 0.3;
+    vertical-align: baseline;
+    display: inline-block;
+    display: none;
+}
+
+ol#playlist li:first-child {
+  counter-reset: customlistcounter;
+}
+
+
+    
+    #go{
+        width: 3px;
+        height: 100%;
+        background: rgb(1,152,117); /* Old browsers */
+        background: -moz-linear-gradient(45deg, rgba(1,152,117,1) 0%, rgba(0,48,35,1) 50%, rgba(1,152,117,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(45deg, rgba(1,152,117,1) 0%,rgba(0,48,35,1) 50%,rgba(1,152,117,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(45deg, rgba(1,152,117,1) 0%,rgba(0,48,35,1) 50%,rgba(1,152,117,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        @include border-radius(5px);
+        position: relative;
+        &::before{
+          content: "";
+          width: 100%;
+          height: 22px;
+          background-color: $primary-color;
+          position: absolute;
+          top: 0;
+          left: 0;
+          @include border-radius(5px);
+        }
+        &::after{
+          content: "";
+          width: 9px;
+          height: 9px;
+          background-color: $decor-color;
+          position: absolute;
+          top: 20px;
+          left: -3px;
+          @include border-radius(50px);
+          -webkit-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0,0.5); 
+          -moz-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0,0.5); 
+          box-shadow: 0px 0px 2px 2px rgba(0, 0, 0,0.5);
+        }
+		#vol{
+      opacity: 0;
+      -webkit-animation: fadeOutUp ease-in 1;
+  	  -moz-animation: fadeOutUp ease-in 1;
+  	  animation: fadeOutUp ease-in 1;
+      -webkit-animation-fill-mode: forwards;
+  	  -moz-animation-fill-mode: forwards;
+  	  animation-fill-mode: forwards;
+      -webkit-animation-duration: 0.4s;
+  	  -moz-animation-duration: 0.4s;
+  	  animation-duration: 0.4s;
+      width: 23px;
+      height: 130px;
+      background: $secondary-color;
+      position: absolute;
+      top: -160px;
+      left: -2px;
+      @include border-radius(2px);
+      padding: 10px 10px;
+      -webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0,0.5); 
+      -moz-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0,0.5); 
+      box-shadow: 0px 0px 1px 1px rgba(0, 0, 0,0.5);
+      &::before{
+        content: "";
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        bottom: -5px;
+        left: 6px;
+        background-color: $secondary-color;
+        -ms-transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      &.active{
+        -webkit-animation: fadeInDown ease-in 1;
+  	    -moz-animation: fadeInDown ease-in 1;
+  	    animation: fadeInDown ease-in 1;
+        -webkit-animation-fill-mode: forwards;
+  	    -moz-animation-fill-mode: forwards;
+  	    animation-fill-mode: forwards;
+        -webkit-animation-duration: 0.4s;
+  	    -moz-animation-duration: 0.4s;
+  	    animation-duration: 0.4s;
+      }
+	  
+	  #volume{
+    width: 20px;
+    position: absolute;
+    bottom: 70px;
+    left: 15px;
+    cursor: pointer;
+    .fa-volume-up{
+      font-size: 1em;
+      color: $decor-color;
+      -webkit-filter: drop-shadow( 0px 2px 2px #000 );
+      filter: drop-shadow( 0px 2px 2px #000 );
+      position: relative;
+      &:hover{
+        color: $primary-color;
+      }
+    }
